@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Header from "@/components/Header";
 import ChatWindow from "@/components/ChatWindow";
@@ -39,6 +39,16 @@ function clearCookie(name: string) {
 }
 
 export default function Page() {
+  // useSearchParams in Next.js 14 App Router needs a Suspense boundary above
+  // it or the build fails to prerender. Wrap the real component below.
+  return (
+    <Suspense fallback={null}>
+      <PageInner />
+    </Suspense>
+  );
+}
+
+function PageInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
