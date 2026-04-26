@@ -31,9 +31,10 @@ export const STRIPE = {
 };
 
 export const SUGGESTIONS = [
-  "Can't sleep la, what's the script?",
-  "Help us write an email to me boss",
-  "How d'you center a div?",
+  "Write mi a letter to get out of jury duty la",
+  "Me mum keeps interfering in me relationship",
+  "Best chippy in Liverpool — settle it",
+  "How do I blag a sick day without getting caught?",
 ];
 
 export const PAYWALL_PHRASES = [
