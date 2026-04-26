@@ -185,6 +185,17 @@ html, body {
   background: #fefdf8;
   border: 2px solid var(--bc-black);
   border-radius: 2px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+/* Focus ring — when the inner <input> is focused, light the wrapper red.
+   :focus-within targets the wrapper because the inner input is borderless. */
+.chat-input-row:focus-within {
+  outline: none;
+  border-color: var(--bc-red);
+  box-shadow:
+    0 0 0 1px var(--bc-near-black),
+    0 0 0 3px rgba(200, 16, 46, 0.3),
+    0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 /* Send button — solid red, the one jab of color */

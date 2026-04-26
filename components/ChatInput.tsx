@@ -40,7 +40,7 @@ const ChatInput = forwardRef<HTMLInputElement, Props>(function ChatInput(
         className="serif flex-1 bg-transparent outline-none border-none"
         style={{
           color: PALETTE.ink,
-          caretColor: PALETTE.ink,
+          caretColor: PALETTE.red,
           fontSize: "1rem",
           padding: "6px 4px",
         }}
