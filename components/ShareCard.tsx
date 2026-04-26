@@ -35,13 +35,11 @@ export default function ShareCard({ msg, onClose }: Props) {
       const file = new File([blob], "scousegpt.png", { type: "image/png" });
       if (
         typeof navigator !== "undefined" &&
-        // @ts-expect-error canShare typing
         navigator.canShare?.({ files: [file] })
       ) {
         await navigator.share({
           title: "Tommy la said:",
           text: truncated,
-          // @ts-expect-error files
           files: [file],
         });
         trackEvent("Share Completed", { method: "native" });
