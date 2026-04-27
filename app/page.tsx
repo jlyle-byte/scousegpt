@@ -7,7 +7,6 @@ import ChatWindow from "@/components/ChatWindow";
 import Footer from "@/components/Footer";
 import ShareCard from "@/components/ShareCard";
 import { PAYWALL } from "@/lib/constants";
-import { trackEvent } from "@/lib/plausible";
 
 type Role = "user" | "assistant";
 type ChatMessage = { role: Role; content: string };
@@ -111,9 +110,8 @@ function PageInner() {
               ...prev,
               { role: "assistant", content: confirmation },
             ]);
-            trackEvent(
-              tier === "beer" ? "Payment Success Beer" : "Payment Success Case"
-            );
+            // Stripe dashboard is the source of truth for payment success
+            // events — no app-side tracking call needed here.
           }
         } catch {}
         router.replace("/");
@@ -176,11 +174,6 @@ function PageInner() {
       localStorage.setItem(LS_MESSAGES, JSON.stringify(messages));
     }
   }, [messages]);
-
-  // Track Paywall Shown — single useEffect, no duplicates
-  useEffect(() => {
-    if (showPaywall) trackEvent("Paywall Shown");
-  }, [showPaywall]);
 
   // Mobile keyboard: visualViewport
   useEffect(() => {

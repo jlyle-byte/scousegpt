@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Source_Serif_4 } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
-import Script from "next/script";
 import "./globals.css";
 
 const display = Bebas_Neue({
@@ -44,20 +43,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
   return (
     <html lang="en">
       <body className={`${display.variable} ${body.variable}`}>
         {children}
         <Analytics />
-        {plausibleDomain && (
-          <Script
-            defer
-            strategy="afterInteractive"
-            data-domain={plausibleDomain}
-            src="https://plausible.io/js/script.js"
-          />
-        )}
       </body>
     </html>
   );

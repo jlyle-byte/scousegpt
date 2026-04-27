@@ -10,7 +10,6 @@ import {
   CHARACTER_NAME,
   CASE_SESSION_WARNING,
 } from "@/lib/constants";
-import { trackEvent } from "@/lib/plausible";
 
 export default function PaywallCard() {
   const phrase = useMemo(
@@ -45,7 +44,6 @@ export default function PaywallCard() {
           href={STRIPE.beerLink}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => trackEvent("Beer Button Clicked")}
           className="beer-btn flex items-center justify-center gap-3"
         >
           Buy Tommy a pint — {PAYWALL.priceBeer}
@@ -61,7 +59,6 @@ export default function PaywallCard() {
           href={STRIPE.caseLink}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => trackEvent("Case Button Clicked")}
           className="case-btn flex items-center justify-center gap-2"
         >
           Buy Tommy a full session — {PAYWALL.priceCase}

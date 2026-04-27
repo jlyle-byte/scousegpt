@@ -25,7 +25,6 @@ Open http://localhost:3000.
 ANTHROPIC_API_KEY=
 NEXT_PUBLIC_STRIPE_BEER_LINK=
 NEXT_PUBLIC_STRIPE_CASE_LINK=
-NEXT_PUBLIC_PLAUSIBLE_DOMAIN=scousegpt.com
 ```
 
 Restart `pnpm dev` after editing — Next.js loads env at startup.
@@ -104,7 +103,7 @@ The current implementation issues a server-side token after `?session=success` i
 1. Push the repo to GitHub.
 2. Vercel → **Add New → Project**, import the repo.
 3. Framework preset: Next.js (auto-detected).
-4. **Environment Variables** — add `ANTHROPIC_API_KEY`, both `NEXT_PUBLIC_STRIPE_*`, and `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` for Production, Preview, and Development.
+4. **Environment Variables** — add `ANTHROPIC_API_KEY` and both `NEXT_PUBLIC_STRIPE_*` for Production, Preview, and Development.
 5. Deploy. Vercel returns a `*.vercel.app` URL (e.g. `scousegpt.vercel.app`).
 
 ---
@@ -156,21 +155,14 @@ Drop a 512×512 PNG at `app/icon.png` and a 180×180 PNG at `app/apple-icon.png`
 
 ---
 
-## Custom analytics events
+## Analytics
 
-Plausible custom events fired by `lib/plausible.ts`:
+Two sources, both already wired up — no third-party analytics service.
 
-| Event | Where |
-|-------|-------|
-| `Paywall Shown` | useEffect on `showPaywall === true` |
-| `Beer Button Clicked` | onClick beer-tier `<a>` |
-| `Case Button Clicked` | onClick case-tier `<a>` |
-| `Payment Success Beer` | Stripe redirect handler, tier=beer |
-| `Payment Success Case` | Stripe redirect handler, tier=case |
-| `Share Card Opened` | useEffect mount of ShareCard |
-| `Share Completed` | post-share / post-download |
+- **Vercel Web Analytics** via `<Analytics />` from `@vercel/analytics/react` in `app/layout.tsx`. Free tier covers page views, unique visitors, top pages, referrers, countries, devices, and Web Vitals. Vercel dashboard → Project → Analytics.
+- **Stripe Dashboard** is the source of truth for everything paywall-related: button clicks that converted (= each Payment Link checkout start), successful payments by tier, refunds, disputes, conversion rate. The statement descriptor `SCOUSEGPT` makes charges identifiable on customer statements.
 
-`<Analytics />` from `@vercel/analytics/react` covers Web Vitals.
+What's *not* tracked (deliberately): paywall shown, share-card opens, share completions. Trade-off accepted — if conversion analysis ever needs them, re-add a thin event layer rather than a third-party SDK.
 
 ---
 

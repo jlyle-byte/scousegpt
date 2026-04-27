@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Share2, Download, X } from "lucide-react";
 import html2canvas from "html2canvas";
 import { PALETTE, CHARACTER_NAME, DOMAIN } from "@/lib/constants";
-import { trackEvent } from "@/lib/plausible";
 
 type Props = {
   msg: { user: string; assistant: string };
@@ -13,10 +12,6 @@ type Props = {
 
 export default function ShareCard({ msg, onClose }: Props) {
   const cardRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    trackEvent("Share Card Opened");
-  }, []);
 
   const truncated =
     msg.assistant.length > 280
@@ -42,7 +37,6 @@ export default function ShareCard({ msg, onClose }: Props) {
           text: truncated,
           files: [file],
         });
-        trackEvent("Share Completed", { method: "native" });
       } else {
         // download fallback
         const url = URL.createObjectURL(blob);
@@ -51,7 +45,6 @@ export default function ShareCard({ msg, onClose }: Props) {
         a.download = "scousegpt.png";
         a.click();
         URL.revokeObjectURL(url);
-        trackEvent("Share Completed", { method: "download" });
       }
     } catch {}
   }
@@ -69,7 +62,6 @@ export default function ShareCard({ msg, onClose }: Props) {
         a.download = "scousegpt.png";
         a.click();
         URL.revokeObjectURL(url);
-        trackEvent("Share Completed", { method: "download" });
       }, "image/png");
     } catch {}
   }
