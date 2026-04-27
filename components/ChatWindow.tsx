@@ -12,7 +12,6 @@ import Avatar from "./Avatar";
 import {
   PALETTE,
   SUGGESTIONS,
-  STAMPS,
   CHARACTER_NAME,
 } from "@/lib/constants";
 
@@ -73,15 +72,9 @@ const ChatWindow = forwardRef<HTMLDivElement, Props>(function ChatWindow(
       <div className="stripe-accent stripe-left" />
       <div className="stripe-accent stripe-right" />
 
-      {/* 1. Stamp header */}
-      <div className="px-8 md:px-12 pt-6 md:pt-7">
-        <span className="stamp" style={{ color: PALETTE.ink, opacity: 0.7 }}>
-          № 001 · {STAMPS.label}
-        </span>
-      </div>
-      <div className="ink-divider mx-8 md:mx-12 mt-3 mb-2" />
+      {/* No card header — the chat starts directly with the messages region. */}
 
-      {/* 2. Scrollable messages */}
+      {/* Scrollable messages */}
       <div
         ref={scrollRef}
         className="flex-1 min-h-0 overflow-y-auto px-8 md:px-12 py-4"
