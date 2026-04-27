@@ -39,6 +39,8 @@ export default function Footer() {
                 ) : (
                   <a
                     href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="stamp transition-opacity"
                     style={{ ...baseStyle, opacity: 0.7 }}
                     onMouseEnter={(e) => {
@@ -68,6 +70,8 @@ export default function Footer() {
           PART OF THE CHARACTERS4AI FAMILY ·{" "}
           <a
             href="https://characters4ai.com"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{ color: PALETTE.gold, opacity: 0.85 }}
           >
             characters4ai.com
@@ -78,6 +82,8 @@ export default function Footer() {
         <div className="flex justify-center gap-6 mb-6">
           <a
             href="https://characters4ai.com/terms"
+            target="_blank"
+            rel="noopener noreferrer"
             className="stamp"
             style={{ color: PALETTE.gold, opacity: 0.6, fontSize: 10 }}
           >
@@ -85,6 +91,8 @@ export default function Footer() {
           </a>
           <a
             href="https://characters4ai.com/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
             className="stamp"
             style={{ color: PALETTE.gold, opacity: 0.6, fontSize: 10 }}
           >
@@ -92,6 +100,8 @@ export default function Footer() {
           </a>
           <a
             href="https://characters4ai.com/disclaimer"
+            target="_blank"
+            rel="noopener noreferrer"
             className="stamp"
             style={{ color: PALETTE.gold, opacity: 0.6, fontSize: 10 }}
           >
