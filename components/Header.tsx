@@ -56,12 +56,6 @@ export default function Header() {
         <div className="rule-tagline" />
       </div>
 
-      {/* Press label */}
-      <div className="mt-3 flex justify-start">
-        <span className="stamp" style={{ opacity: 0.8 }}>
-          {STAMPS.label}
-        </span>
-      </div>
     </header>
   );
 }

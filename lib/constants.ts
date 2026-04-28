@@ -69,7 +69,6 @@ export const DISCLAIMER_LINE =
 export const STAMPS = {
   left: "★ LIVERPOOL · THE MERSEY · BEYOND ★",
   right: "SOUND AS A POUND",
-  label: "Fanzine Press · Est. 1992",
   footerText: "for fun la, but the advice is boss",
 };
 
