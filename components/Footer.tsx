@@ -1,84 +1,30 @@
-import { PALETTE, SISTER_SITES, CURRENT_SITE, DISCLAIMER_LINE } from "@/lib/constants";
+import { PALETTE, DISCLAIMER_LINE } from "@/lib/constants";
+
+// Sister sites are NOT shown on character sites. Discovery of the network
+// happens on characters4ai.com only. Each character site should feel like
+// it was made entirely for its own audience — not a portal to others.
 
 export default function Footer() {
   return (
     <footer className="w-full mt-16 relative z-10">
       <div className="max-w-3xl mx-auto px-6 py-16">
-        <div className="ink-divider mb-12" style={{ opacity: 0.6 }} />
+        <div className="ink-divider mb-10" style={{ opacity: 0.6 }} />
 
-        {/* The Family */}
-        <h3
-          className="stamp text-center mb-6"
-          style={{
-            color: PALETTE.gold,
-            opacity: 0.7,
-            fontSize: 11,
-            letterSpacing: "0.32em",
-          }}
-        >
-          ◆ THE FAMILY ◆
-        </h3>
-
-        <ul className="grid grid-cols-3 gap-y-4 gap-x-2 md:flex md:flex-wrap md:justify-center md:gap-x-8 mb-8">
-          {SISTER_SITES.map((s) => {
-            const isCurrent = s.name === CURRENT_SITE;
-            const baseStyle = {
-              color: PALETTE.gold,
-              fontSize: 11,
-            } as const;
-            return (
-              <li key={s.name} className="text-center">
-                {isCurrent ? (
-                  <span
-                    className="stamp"
-                    style={{ ...baseStyle, opacity: 0.4, cursor: "default" }}
-                    aria-current="page"
-                  >
-                    {s.name}
-                  </span>
-                ) : (
-                  <a
-                    href={s.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="stamp transition-opacity"
-                    style={{ ...baseStyle, opacity: 0.7 }}
-                    onMouseEnter={(e) => {
-                      (e.target as HTMLElement).style.opacity = "1";
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.target as HTMLElement).style.opacity = "0.7";
-                    }}
-                  >
-                    {s.name}
-                  </a>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-
-        {/* Holding company */}
+        {/* In-character disclaimer */}
         <p
-          className="stamp text-center mb-4"
+          className="serif italic text-center mb-8"
           style={{
-            color: PALETTE.cream,
-            opacity: 0.55,
-            fontSize: 10,
+            color: "rgba(240,232,208,0.45)",
+            fontSize: "0.9rem",
+            lineHeight: 1.5,
+            maxWidth: 600,
+            margin: "0 auto 2rem",
           }}
         >
-          PART OF THE CHARACTERS4AI FAMILY ·{" "}
-          <a
-            href="https://characters4ai.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: PALETTE.gold, opacity: 0.85 }}
-          >
-            characters4ai.com
-          </a>
+          {DISCLAIMER_LINE}
         </p>
 
-        {/* Legal */}
+        {/* Legal links */}
         <div className="flex justify-center gap-6 mb-6">
           <a
             href="https://characters4ai.com/terms"
@@ -109,18 +55,37 @@ export default function Footer() {
           </a>
         </div>
 
-        {/* Disclaimer */}
+        {/* Holding line — single acknowledgment of the parent brand */}
         <p
-          className="serif italic text-center"
+          className="stamp text-center mb-3"
           style={{
-            color: "rgba(240,232,208,0.4)",
-            fontSize: "0.85rem",
-            lineHeight: 1.5,
-            maxWidth: 600,
-            margin: "0 auto",
+            color: PALETTE.cream,
+            opacity: 0.55,
+            fontSize: 10,
           }}
         >
-          {DISCLAIMER_LINE}
+          Part of the{" "}
+          <a
+            href="https://characters4ai.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: PALETTE.gold, opacity: 0.85 }}
+          >
+            Characters4AI
+          </a>{" "}
+          family
+        </p>
+
+        {/* Copyright */}
+        <p
+          className="stamp text-center"
+          style={{
+            color: PALETTE.cream,
+            opacity: 0.4,
+            fontSize: 10,
+          }}
+        >
+          © 2026 Characters4AI
         </p>
       </div>
 
